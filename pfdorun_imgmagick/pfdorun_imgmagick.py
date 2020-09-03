@@ -261,12 +261,25 @@ class Pfdorun_imgmagick(ChrisApp):
         options.inputDir = options.inputdir
         options.outputDir = options.outputdir
 
-        pf_do_shell         = pfdo_run.pfdo_run(options)
+        # pf_do_shell         = pfdo_run.pfdo_run(vars(options))
+        pf_do_shell         = pfdo_run.object_factoryCreate(options).C_convert
 
+        if options.version:
+            print("Version: %s" % options.version)
+            sys.exit(1)
+
+        if options.man or options.synopsis:
+            if options.man:
+                str_help = self.show_man_page(False)
+            else:
+                str_help = self.show_man_page(True)
+            print(str_help)
+            sys.exit(1)
+            
         # And now run it!
         # pudb.set_trace()
         d_pfdo_shell        = pf_do_shell.run(timerStart = True)
-
+        # print(d_pfdo_shell)
         if options.printElapsedTime:
             pf_do_shell.dp.qprint(
                     "Elapsed time = %f seconds" %
