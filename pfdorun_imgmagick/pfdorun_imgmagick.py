@@ -261,8 +261,8 @@ class Pfdorun_imgmagick(ChrisApp):
         options.inputDir = options.inputdir
         options.outputDir = options.outputdir
 
-        # pf_do_shell         = pfdo_run.pfdo_run(vars(options))
-        pf_do_shell         = pfdo_run.object_factoryCreate(options).C_convert
+        pf_do_shell         = pfdo_run(vars(options))
+        # pf_do_shell         = pfdo_run.object_factoryCreate(options).C_convert
 
         if options.version:
             print("Version: %s" % options.version)
