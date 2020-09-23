@@ -18,6 +18,7 @@ sys.path.append(os.path.dirname(__file__))
 from chrisapp.base import ChrisApp
 from pfdo_run      import pfdo_run
 
+
 Gstr_title = """
 
        _               __    _                          _                                       _      _    
@@ -82,7 +83,7 @@ class Pfdorun_imgmagick(ChrisApp):
                           dest='exec', optional=False, default="")
 
         self.add_argument("--analyzeFileIndex", help="file index per directory to analyze", type=str,
-                          dest='analyzeFileIndex', optional=False, default="")
+                          dest='analyzeFileIndex', optional=False, default="-1")
 
         self.add_argument("--filterExpression", help="string file filter", type=str,
                           dest='filter', optional=True, default="")
@@ -261,8 +262,8 @@ class Pfdorun_imgmagick(ChrisApp):
         options.inputDir = options.inputdir
         options.outputDir = options.outputdir
 
+        # print(options.man)
         pf_do_shell         = pfdo_run(vars(options))
-        # pf_do_shell         = pfdo_run.object_factoryCreate(options).C_convert
 
         if options.version:
             print("Version: %s" % options.version)
