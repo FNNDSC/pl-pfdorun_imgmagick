@@ -132,6 +132,7 @@ class Pfdorun_imgmagick(ChrisApp):
                 --exec <CLIcmdToExec>                       \\
                 [-i|--inputFile <inputFile>]                \\
                 [--analyzeFileIndex <someIndex>]            \\
+                [--filterExpression]                        \\
                 [--threads <numThreads>]                    \\
                 [--noJobLogging]                            \\
                 [--test]                                    \\
