@@ -77,13 +77,13 @@ class Pfdorun_imgmagick(ChrisApp):
         """
 
         self.add_argument("-i", "--inputFile", help="input file", type=str,
-                          dest='inputFile', optional=False, default="")
+                          dest='inputFile', optional=True, default="")
 
         self.add_argument("--exec", help="CLI command to execute", type=str,
                           dest='exec', optional=False, default="")
 
         self.add_argument("--analyzeFileIndex", help="file index per directory to analyze", type=str,
-                          dest='analyzeFileIndex', optional=False, default="-1")
+                          dest='analyzeFileIndex', optional=True, default="-1")
 
         self.add_argument("--filterExpression", help="string file filter", type=str,
                           dest='filter', optional=True, default="")
