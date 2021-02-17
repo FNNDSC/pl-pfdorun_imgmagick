@@ -85,8 +85,11 @@ class Pfdorun_imgmagick(ChrisApp):
         self.add_argument("--analyzeFileIndex", help="file index per directory to analyze", type=str,
                           dest='analyzeFileIndex', optional=True, default="-1")
 
-        self.add_argument("--filterExpression", help="string file filter", type=str,
-                          dest='filter', optional=True, default="")
+        self.add_argument("--fileFilter", dest = 'fileFilter', type = str, optional= True,
+                            default = '', help = "a list of comma separated string filters to apply across the input file space")
+
+        self.add_argument("--dirFilter", dest = 'dirFilter', type = str, optional= True,
+                            default = '', help = "a list of comma separated string filters to apply across the input dir space")
 
         self.add_argument('--printElapsedTime', dest='printElapsedTime', type=bool, action='store_true',
                           default=False, optional=True, help='print program run time')
@@ -128,11 +131,11 @@ class Pfdorun_imgmagick(ChrisApp):
 
         SYNOPSIS
 
-            python pfdorun_imgmagick.py                   \\
                 --exec <CLIcmdToExec>                       \\
                 [-i|--inputFile <inputFile>]                \\
+                [--fileFilter <filter1,filter2,...>]        \\
+                [--dirFilter <filter1,filter2,...>]         \\
                 [--analyzeFileIndex <someIndex>]            \\
-                [--filterExpression]                        \\
                 [--threads <numThreads>]                    \\
                 [--noJobLogging]                            \\
                 [--test]                                    \\
@@ -172,9 +175,30 @@ class Pfdorun_imgmagick(ChrisApp):
             specified, then do not perform a directory walk, but convert only
             this file.
 
-            [-f|--filterExpression <someFilter>]
-            An optional string to filter the files of interest from the
-            <inputDir> tree.
+            [--fileFilter <someFilter1,someFilter2,...>]
+            An optional comma-delimated string to filter out files of interest
+            from the <inputDir> tree. Each token in the expression is applied in
+            turn over the space of files in a directory location, and only files
+            that contain this token string in their filename are preserved.
+
+            [--dirFilter <someFilter1,someFilter2,...>]
+            Similar to the `fileFilter` but applied over the space of leaf node
+            in directory paths. A directory must contain at least one file
+            to be considered.
+
+            If a directory leaf node contains a string that corresponds to any of
+            the filter tokens, a special "hit" is recorded in the file hit list,
+            "%d-<leafnode>". For example, a directory of
+
+                        /some/dir/in/the/inputspace/here1234
+
+            with a `dirFilter` of `1234` will create a "special" hit entry of
+            "%d-here1234" to tag this directory for processing.
+            
+            In addition, if a directory is filtered through, all the files in
+            that directory will be added to the filtered file list. If no files
+            are to be added, passing an explicit file filter with an "empty"
+            single string argument, i.e. `--fileFilter " "`, is advised.
 
             [--analyzeFileIndex <someIndex>]
             An optional string to control which file(s) in a specific directory
