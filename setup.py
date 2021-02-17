@@ -1,37 +1,27 @@
-
-import sys
-import os
-
-
-# Make sure we are running python3.5+
-if 10 * sys.version_info[0] + sys.version_info[1] < 35:
-    sys.exit("Sorry, only Python 3.5+ is supported.")
-
-
+from os import path
 from setuptools import setup
 
-
-def readme():
-    print("Current dir = %s" % os.getcwd())
-    print(os.listdir())
-    with open('README.rst') as f:
-        return f.read()
+with open(path.join(path.dirname(path.abspath(__file__)), 'README.rst')) as f:
+    readme = f.read()
 
 setup(
-      name             =   'pfdorun_imgmagick',
-      # for best practices make this version the same as the VERSION class variable
-      # defined in your ChrisApp-derived Python class
-      version          =   '0.1',
-      description      =   'An app to ...',
-      long_description =   readme(),
-      author           =   'FNNDSC',
-      author_email     =   'dev@babyMRI.org',
-      url              =   'http://wiki',
-      packages         =   ['pfdorun_imgmagick'],
-      install_requires =   ['chrisapp', 'pudb'],
-      test_suite       =   'nose.collector',
-      tests_require    =   ['nose'],
-      scripts          =   ['pfdorun_imgmagick/pfdorun_imgmagick.py'],
-      license          =   'MIT',
-      zip_safe         =   False
-     )
+    name             = 'pfdorun_imgmagick',
+    version          = '1.0.0',
+    description      = 'An app to recursively walk down a directory tree and run a CLI program from imagemagick',
+    long_description = readme,
+    author           = 'Arushi Vyas',
+    author_email     = 'dev@babyMRI.org',
+    url              = 'https://github.com/FNNDSC/pl-pfdorun_imgmagick',
+    packages         = ['pfdorun_imgmagick'],
+    install_requires = ['chrisapp'],
+    test_suite       = 'nose.collector',
+    tests_require    = ['nose'],
+    license          = 'MIT',
+    zip_safe         = False,
+    python_requires  = '>=3.6',
+    entry_points     = {
+        'console_scripts': [
+            'pfdorun_imgmagick = pfdorun_imgmagick.__main__:main'
+            ]
+        }
+)

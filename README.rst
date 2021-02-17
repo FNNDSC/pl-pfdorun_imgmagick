@@ -16,7 +16,9 @@ pl-pfdorun_imgmagick
 Abstract
 --------
 
-An app to ...
+`pfdorun_imgmagick.py` recursively walks down a directory tree and runs a CLI program from imagemagick (a CLI utility to format images in a desired way) on files in each directory (optionally filtered by some simple expression). Results of each operation are saved in an output tree that preserves the input directory structure.
+
+``pl-pfdorun_imgmagick`` runs one of imagemagick's user specified CLI at each path/file location in an input directory, storing results (and logs) at a corresponding  dir location rooted in the output directory.
 
 
 Synopsis
@@ -214,7 +216,7 @@ Copy and modify the different commands below as needed
         fnndsc/pl-pfdorun_imgmagick pfdorun_imgmagick.py                \\
         --exec "convert %inputWorkingDir/%inputWorkingFile 
             %outputWorkingDir/%_rmext_inputWorkingFile.png"             \\
-        --filterExpression jpg                                          \\
+        --fileFilter jpg                                          \\
         --printElapsedTime                                              \\
         /incoming /outgoing
 

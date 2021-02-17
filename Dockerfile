@@ -21,25 +21,17 @@
 #   docker run -ti -e HOST_IP=$(ip route | grep -v docker | awk '{if(NF==11) print $9}') --entrypoint /bin/bash local/pl-pfdorun_imgmagick
 #
 
+FROM python:3.9.1-slim-buster
+LABEL maintainer="Arushi Vyas <dev@babyMRI.org>"
 
+WORKDIR /usr/local/src
 
-FROM fnndsc/ubuntu-python3:latest
-MAINTAINER fnndsc "dev@babymri.org"
-
-ENV APPROOT="/usr/src/pfdorun_imgmagick"
-ENV DEBIAN_FRONTEND=noninteractive
-COPY ["pfdorun_imgmagick", "${APPROOT}"]
-COPY ["requirements.txt", "${APPROOT}"]
-
-WORKDIR $APPROOT
-
-RUN apt-get update && apt-get install -y imagemagick \
+COPY requirements.txt .
+RUN pip install -r requirements.txt \
+    && apt-get update && apt-get install -y imagemagick \
     && rm -rf /var/lib/apt/lists/*
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
 
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+COPY . .
+RUN pip install .
 
-CMD ["pfdorun_imgmagick.py", "--help"]
+CMD ["pfdorun_imgmagick", "--help"]
