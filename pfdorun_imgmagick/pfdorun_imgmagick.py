@@ -127,26 +127,26 @@ class Pfdorun_imgmagick(ChrisApp):
 
         NAME
 
-       pfdorun_imgmagick.py 
+        pfdorun_imgmagick 
 
         SYNOPSIS
 
-                --exec <CLIcmdToExec>                       \\
-                [-i|--inputFile <inputFile>]                \\
-                [--fileFilter <filter1,filter2,...>]        \\
-                [--dirFilter <filter1,filter2,...>]         \\
-                [--analyzeFileIndex <someIndex>]            \\
-                [--threads <numThreads>]                    \\
-                [--noJobLogging]                            \\
-                [--test]                                    \\
-                [-x|--man]                                  \\
-                [-y|--synopsis]                             \\
-                [--followLinks]                             \\
-                [--json]                                    \\
-                [-v <level>] [--verbosity <level>]          \\
-                [--version]                                 \\
-                <inputDir>                                  \\
-                <outputDir> 
+            --exec <CLIcmdToExec>                       \\
+            [-i|--inputFile <inputFile>]                \\
+            [--fileFilter <filter1,filter2,...>]        \\
+            [--dirFilter <filter1,filter2,...>]         \\
+            [--analyzeFileIndex <someIndex>]            \\
+            [--threads <numThreads>]                    \\
+            [--noJobLogging]                            \\
+            [--test]                                    \\
+            [-x|--man]                                  \\
+            [-y|--synopsis]                             \\
+            [--followLinks]                             \\
+            [--json]                                    \\
+            [-v <level>] [--verbosity <level>]          \\
+            [--version]                                 \\
+            <inputDir>                                  \\
+            <outputDir> 
 
         ''' % scriptName
 
