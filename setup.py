@@ -6,7 +6,7 @@ with open(path.join(path.dirname(path.abspath(__file__)), 'README.rst')) as f:
 
 setup(
     name             = 'pfdorun_imgmagick',
-    version          = '1.0.0',
+    version          = '1.0.1',
     description      = 'An app to recursively walk down a directory tree and run a CLI program from imagemagick',
     long_description = readme,
     author           = 'Arushi Vyas',
